@@ -1,0 +1,20 @@
+<div class="navbar">
+    <div class="logo">
+        <img src="file:///storage/emulated/0/Xender/image/profile (6).png" alt="olakay site logo" height=50 width=125px>
+    </div>
+    <nav>
+        <ul id="menuItems">
+            <li><a href="/">Home</a></li>
+            <li><a href="{% url 'products' %}">Product</a></li>
+            <li><a href="#">Login</a></li>
+            <li><a href="#">Logout</a></li>
+            <li><a href="#">Register</a></li>
+            <li><a href="#">Profile</a></li>
+        </ul>
+    </nav>
+    <div class="cart">
+        <i class="fa-solid fa-cart-shopping"><a href="{% url 'cart-details' %}">Cart: {% if your_cart > 0 %} {{ your_cart}} {%else%} 0 {%endif%} </a></i>
+    </div>
+    <div class="togg">
+        <i onclick="menuToggle()" class="fa-solid fa-bars">toggle</i></div>
+</div>

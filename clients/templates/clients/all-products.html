@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    {% include 'clients/navigation.html' %}
+
+     <div class="search-product">
+        <form>
+            <input class="search" type="text" placeholder="Search Product....">
+            <button class="search-submit" type="Submit" value="Search">Search</button>
+        </form>
+    </div>
+
+    <div class="small-container">
+        <h2 class="title">Educational</h2>
+        <div class="row">
+            {% for item in items %}
+            <div class="col-4">
+                <a href="{% url 'about-item' item.id%}">
+                <img src="{{ item.get_url}}" alt="">
+                <h4>{{ item.name }}</h4>
+                <div class="rating">
+                    rating
+                </div>
+                <p>${{ item.price }}</p>
+                </a>
+                 <a href="{% url 'add-to-cart' item.id %}"><button class="cart-add" type="Submit">Add to cart</button></a>
+            </div>
+            {% endfor %}
+            
+        </div>
+        <h2 class="title">Sport</h2>
+        <div class="row">
+            <div class="col-4">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTS3-x4V15yB7S4WUSAzbBpL5lLXu8I2l-lqw&usqp=CA" alt="">
+                <h4>Product Name</h4>
+                <div class="rating">
+                    rating
+                </div>
+                <p>$100.00</p>
+                <form>
+                    <button class="cart-add" type="Submit">Add to cart</button>
+                </form>
+            </div>
+            <div class="col-4">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTS3-x4V15yB7S4WUSAzbBpL5lLXu8I2l-lqw&usqp=CA" alt="">
+                <h4>Product Name</h4>
+                <div class="rating">
+                    rating
+                </div>
+                <p>$100.00</p>
+                <form>
+                    <button class="cart-add" type="Submit">Add to cart</button>
+                </form>
+            </div>
+            <div class="col-4">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTS3-x4V15yB7S4WUSAzbBpL5lLXu8I2l-lqw&usqp=CA" alt="">
+                <h4>Product Name</h4>
+                <div class="rating">
+                    rating
+                </div>
+                <p>$100.00</p>
+                <form>
+                    <button class="cart-add" type="Submit">Add to cart</button>
+                </form>
+            </div>
+            <div class="col-4">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTS3-x4V15yB7S4WUSAzbBpL5lLXu8I2l-lqw&usqp=CA" alt="">
+                <h4>Product Name</h4>
+                <div class="rating">
+                    rating
+                </div>
+                <p>$100.00</p>
+                <form>
+                    <button class="cart-add" type="Submit">Add to cart</button>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDwqwoPXWFgI-OhB2wxWXEKAZ7e7H0MDBCqA&usqp=CAU" alt="">
+                <h4>Product Name</h4>
+                <div class="rating">
+                    rating
+                </div>
+                <p>$100.00</p>
+                <form>
+                    <button class="cart-add" type="Submit">Add to cart</button>
+                </form>
+            </div>
+            <div class="col-4">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDwqwoPXWFgI-OhB2wxWXEKAZ7e7H0MDBCqA&usqp=CAU" alt="t7t7">
+                <h4>Product Name</h4>
+                <div class="rating">
+                    rating
+                </div>
+                <p>$100.00</p>
+                <form>
+                    <button class="cart-add" type="Submit">Add to cart</button>
+                </form>
+            </div>
+            <div class="col-4">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTS3-x4V15yB7S4WUSAzbBpL5lLXu8I2l-lqw&usqp=CA" alt="uhu">
+                <h4>Product Name</h4>
+                <div class="rating">
+                    rating
+                </div>
+                <p>$100.00</p>
+                <form>
+                    <button class="cart-add" type="Submit">Add to cart</button>
+                </form>
+            </div>
+            <div class="col-4">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTS3-x4V15yB7S4WUSAzbBpL5lLXu8I2l-lqw&usqp=CA" alt="">
+                <h4>Name product</h4>
+                <div class="rating">
+                    rating
+                </div>
+                <p>$100.00</p>
+                <form>
+                    <button class="cart-add" type="Submit">Add to cart</button>
+                </form>
+            </div>
+        </div>
+    </div>
+   <!-- ----------- brand ------- -->
+    <div class="brands">
+        <div class="small-container">
+            <div class="row">
+                <div class="col-5">
+                    <img src="file:///storage/emulated/0/Xender/image/IMG_-fs4en7~2.jpg">
+                </div>
+                <div class="col-5">
+                    <img src="file:///storage/emulated/0/Xender/image/IMG_-fs4en7~2.jpg">
+                </div>
+                <div class="col-5">
+                    <img src="file:///storage/emulated/0/Xender/image/IMG_-fs4en7~2.jpg">
+                </div>
+                <div class="col-5">
+                    <img src="file:///storage/emulated/0/Xender/image/IMG_-fs4en7~2.jpg">
+                </div>
+                <div class="col-5">
+                    <img src="file:///storage/emulated/0/Xender/image/IMG_-fs4en7~2.jpg">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+      <!-- -------- footer ----- -->
+      <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col-1">
+                    <h3>Download Our App</h3>
+                    <p>
+                        Android version and IOS version
+                    </p>
+                </div>
+
+                <div class="footer-col-3">
+                    <h3>Useful Links</h3>
+                    <ul>
+                        <li>Coupons</li>
+                        <li>Blog post</li>
+                        <li>Return Policy</li>
+                        <li>Join Affiliates</li>
+                    </ul>
+                </div>
+                <div class="footer-col-3">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li>Facebook</li>
+                        <li>Instagram</li>
+                        <li>Twitter</li>
+                        <li>Youtube</li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <p class="copyright">Copyright - 2000 olakay coder</p>
+        </div>
+    </div>
+</body>
+</html>

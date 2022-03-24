@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>cart details page</h1><hr>
+    <table>
+        <thead>
+            <th>Item Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Status</th>
+        </thead>
+        <tbody>
+            {% for item in items_in_cart %}
+            <tr>
+                <td><a href="{% url 'about-item' item.item.id%}">{{ item.item.name }} </a></td>
+                <td>{{ item.item.price }}</td>
+                <td>{{item.quantity}}</td>
+                <td>{{ item.status }} </td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <td ><h3>Total price</h3></td>
+                <td></td>
+                <td></td>
+                <td> {{ sum}} </td>
+            </tr>
+            
+        </tbody>
+    </table>
+</body>
+</html>

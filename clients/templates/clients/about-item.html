@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {%for message in messages%}
+    <h4>{{ message}}    </h4>
+    {%endfor %}
+    <div>
+        <img src="{{ item.get_url}}"  height="200" width="200" alt="">
+        <h1>{{ item.name }}</h1>
+        <p>{{ item.price }}</p>
+
+    </div>
+    <a href="{% url 'add-to-cart' item.id %}">Add to cart</a><br>
+    <a href="{% url 'delete-from-cart' item.id %}"><button>remove from cart</button></a>
+</body>
+</html>
