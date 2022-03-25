@@ -1,22 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    {%for message in messages%}
-    <h4>{{ message}}    </h4>
-    {%endfor %}
-    <div>
-        <img src="{{ item.get_url}}"  height="200" width="200" alt="">
-        <h1>{{ item.name }}</h1>
-        <p>{{ item.price }}</p>
+    {% load static %}
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+        <link rel="stylesheet" href="{% static 'css/about-item.css' %}">
+        <title>Document</title>
+    </head>
+    <body>
 
-    </div>
-    <a href="{% url 'add-to-cart' item.id %}">Add to cart</a><br>
-    <a href="{% url 'delete-from-cart' item.id %}"><button>remove from cart</button></a>
+        {% include 'clients/navigation.html' %}
+        <section class="banner about-container">
+            {%for message in messages%}
+                <h4>{{ message}}    </h4>
+            {%endfor %}
+            <div class="photo-banner">
+                <img src="{{ item.get_url}}" alt="">
+            </div>
+            <div class="descr-banner">
+                <h2>&lt;{{ item.name }}<span class="slash">/</span>&gt;</h2>
+                <p>Price : <span class="price">{{ item.price }}</span></p>
+                <p>Category : <span class="price">{{ item.category }}</span></p>
+                <a href="{% url 'add-to-cart' item.id %}" class="btn">Add to cart</a><br>
+                <a href="{% url 'delete-from-cart' item.id %}" class="btn">Remove from cart</a>
+                
+            </div>
+        </section>
+        <!-- About -->
+        <div class="first-style-sec">
+            <section class="about space-section container">
+                <h2>&lt;Description<span class="slash">/</span>&gt;</h2>
+                <p>{{ item.description }} </p>
+            </section>
+        </div>
+        {% include 'clients/footer.html' %}
+
 </body>
 </html>

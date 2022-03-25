@@ -12,8 +12,8 @@
     {% include 'clients/navigation.html' %}
 
      <div class="search-product">
-        <form>
-            <input class="search" type="text" placeholder="Search Product....">
+        <form action="{% url 'search-item' %}" method="get">
+            <input class="search" name="search" type="text" placeholder="Search Product...." required>
             <button class="search-submit" type="Submit" value="Search">Search</button>
         </form>
     </div>
@@ -152,41 +152,6 @@
             </div>
         </div>
     </div>
-
-
-      <!-- -------- footer ----- -->
-      <div class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="footer-col-1">
-                    <h3>Download Our App</h3>
-                    <p>
-                        Android version and IOS version
-                    </p>
-                </div>
-
-                <div class="footer-col-3">
-                    <h3>Useful Links</h3>
-                    <ul>
-                        <li>Coupons</li>
-                        <li>Blog post</li>
-                        <li>Return Policy</li>
-                        <li>Join Affiliates</li>
-                    </ul>
-                </div>
-                <div class="footer-col-3">
-                    <h3>Contact Us</h3>
-                    <ul>
-                        <li>Facebook</li>
-                        <li>Instagram</li>
-                        <li>Twitter</li>
-                        <li>Youtube</li>
-                    </ul>
-                </div>
-            </div>
-            <hr>
-            <p class="copyright">Copyright - 2000 olakay coder</p>
-        </div>
-    </div>
+    {% include 'clients/footer.html' %}
 </body>
 </html>

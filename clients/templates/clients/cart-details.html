@@ -1,37 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {%load static%}
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/cart-detail.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <title>Document</title>
 </head>
 <body>
-    <h1>cart details page</h1><hr>
-    <table>
-        <thead>
-            <th>Item Name</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Status</th>
-        </thead>
-        <tbody>
-            {% for item in items_in_cart %}
-            <tr>
+    <div class="navbar">
+        <div class="logo">
+            <img src="file:///storage/emulated/0/Xender/image/profile (6).png" alt="olakay site logo" height=50 width=125px>
+        </div>
+        <nav>
+            <ul id="menuItems">
+                <li><a href="/">Home</a></li>
+                <li><a href="{% url 'products' %}">Product</a></li>
+                <li><a href="#">Login</a></li>
+                <li><a href="#">Logout</a></li>
+                <li><a href="#">Register</a></li>
+                <li><a href="#">Profile</a></li>
+            </ul>
+        </nav>
+        <div class="cart">
+            <i class="fa-solid fa-cart-shopping"><a href="{% url 'cart-details' %}">Cart: {% if your_cart > 0 %} {{ your_cart}} {%else%} 0 {%endif%} </a></i>
+        </div>
+        <div class="togg">
+            <i onclick="menuToggle()" class="fa-solid fa-bars">toggle</i></div>
+    </div>
+    <section>
+        <h1>cart details</h1>
+        <div class="tbl-header">
+          <table cellpadding="0" cellspacing="0" border="0">
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Status</th>
+                <th>Change</th>
+    
+              </tr>
+            </thead>
+          </table>
+        </div>
+        <div class="tbl-content">
+          <table cellpadding="0" cellspacing="0" border="0">
+            <tbody>
+                {% for item in items_in_cart %}
+              <tr>
                 <td><a href="{% url 'about-item' item.item.id%}">{{ item.item.name }} </a></td>
-                <td>{{ item.item.price }}</td>
+                <td>${{ item.item.price }}</td>
                 <td>{{item.quantity}}</td>
-                <td>{{ item.status }} </td>
-            </tr>
-            {% endfor %}
-            <tr>
-                <td ><h3>Total price</h3></td>
+                <td>{{ item.status }}</td>
+                <td>-0.36%</td>
+                
+              </tr>
+              {% endfor %}
+              <tr>
+                <td><h2>TOTAL</h2></td>
+                <td><h2>{{ sum}}</h2></td>
                 <td></td>
                 <td></td>
-                <td> {{ sum}} </td>
-            </tr>
-            
-        </tbody>
-    </table>
+                <td></td>
+    
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      
+      {% include 'clients/footer.html' %}
 </body>
 </html>

@@ -1,0 +1,165 @@
+html, body, div, span,h2,p,section {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+/* HTML5 display-role reset for older browsers */
+ section {
+	display: block;
+}
+
+
+/* Grids */
+
+@media(min-width: 320px) {
+
+	.about-container {
+  min-width: 320px;
+  padding: 0 15px;
+  margin: 0 auto;
+	}
+}
+
+@media(min-width: 768px) {
+	.about-container {
+  max-width: 750px;
+	}
+}
+
+@media(min-width: 1200px) {
+	.about-container {
+  max-width: 1170px;
+	}
+}
+/* Basic */
+body {
+  font: 400 16px/26px , sans-serif;
+  color: #333;
+  text-align: center;
+}
+h2 {
+  font-weight: 900;
+  color: #000;
+}
+h2 {
+  font-size: 24px;
+	margin-bottom: 40px;
+}
+
+p {
+  margin-bottom: 30px;
+}
+
+.price{
+    font-size: 20px;
+    font-weight: 800;
+}
+@media(min-width: 320px) {
+	.space-section {
+		padding-top: 60px;
+		padding-bottom: 60px;
+	}
+}
+
+@media(min-width: 768px) {
+	.space-section {
+		padding-top: 80px;
+		padding-bottom: 80px;
+	}
+}
+.first-style-sec {
+	background-color: #f4f4f4;
+}
+img {
+	width: 500px;
+	height: 400px;
+    
+}
+
+@media(min-width: 768px) {
+	.top-nav {
+		display: inline-block;
+	}
+	.mob-nav, .dropDN-menu {
+		display: none;
+	}
+}
+
+/* Banner Section */
+.banner {
+  text-align: left;
+}
+@media(min-width: 320px) {
+	.photo-banner {
+		display: block;
+	}
+	.descr-banner {
+		display: block;
+		text-align: center;
+		padding: 50px 0 60px 0;
+	}
+}
+@media(min-width: 768px) {
+	.photo-banner, .descr-banner {
+		display: inline-block;
+		vertical-align: top;
+	}
+	.photo-banner {
+		width: 50%;
+		padding-top: 64px;
+		margin-left: 0;
+		line-height: 0;
+	}
+	.descr-banner {
+		text-align: left;
+	  padding-left: 60px;
+	  padding-top: 45px;
+	}
+}
+
+@media(min-width: 1200px) {
+	.photo-banner {
+		margin-left: 100px;
+	}
+	.descr-banner {
+	  padding-left: 90px;
+	  padding-top: 100px;
+	}
+}
+/* About Section */
+@media(min-width: 768px) {
+	.about p {
+		padding: 0 100px;
+	}
+}
+@media(min-width: 1200px) {
+	.about p {
+		padding: 0 300px;
+	}
+}
+/* Bottoms */
+.btn {
+  display: inline-block;
+  background-color: #e74c3c;
+  border-radius: 10px;
+  line-height: 40px;
+  height: 40px;
+  padding: 0 30px;
+  text-decoration: none;
+  color: #fff;
+  font-weight: 900;
+	cursor: pointer;
+	transition: all .3s ease;
+}
+.btn:hover {
+	background-color: #d62d1a;
+	transition: all .3s ease;
+}
+/* User's styles */
+.under-line {
+  padding-bottom: 10px;
+  border-bottom: 2px solid #e74c3c;
+}
+.slash {
+  color: #e74c3c;
+}

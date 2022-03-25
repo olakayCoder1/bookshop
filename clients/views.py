@@ -24,7 +24,9 @@ def home_page(request):
     
 def about_item(request, id):
     item = get_object_or_404(Items, pk=id)
-    return render(request, 'clients/about-item.html', {'item': item})
+    your_cart = OrderItem.objects.filter(user_id=request.user, status='pending')
+    total_cart_item = your_cart.aggregate(Sum('quantity'))['quantity__sum']
+    return render(request, 'clients/about-item.html', {'item': item , 'your_cart': total_cart_item})
 
 
 def all_product(request):
@@ -88,7 +90,6 @@ def remove_single_item_from_cart(request, id):
             else:
                 order.item.remove(order_item)
                 order_item.delete()
-            messages.info(request, "This item quantity was updated.")
             return redirect("/")
         else:
             messages.info(request, "This item was not in your cart")
@@ -105,9 +106,16 @@ def cart_detail(request):
     sum = 0
     for val in items_in_cart:
         sum += val.get_total_item_price()
-    context = { 'items_in_cart' : items_in_cart , 'sum': sum}
+    your_cart = OrderItem.objects.filter(user_id=request.user, status='pending')
+    total_cart_item = your_cart.aggregate(Sum('quantity'))['quantity__sum']
+    context = { 'items_in_cart' : items_in_cart , 'sum': sum , 'your_cart': total_cart_item}
     return render(request, 'clients/cart-details.html', context)
 
 
 
-
+def search_item(request):
+    search_word = request.GET['search']
+    result = Items.objects.filter(name__icontains=search_word)
+    your_cart = OrderItem.objects.filter(user_id=request.user, status='pending')
+    total_cart_item = your_cart.aggregate(Sum('quantity'))['quantity__sum']
+    return render(request, 'clients/search.html', {'results': result , 'your_cart': total_cart_item})
