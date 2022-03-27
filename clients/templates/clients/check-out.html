@@ -1,0 +1,154 @@
+{% load static%}
+<link rel="stylesheet" href="{% static 'css/base.css' %}">
+<title>cash out </title>
+<style>
+    
+
+h1{
+    font-size: 30px;
+    color: #111;
+    text-transform: uppercase;
+    font-weight: 200;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  table{
+    width:100%;
+    table-layout: fixed;
+  }
+  .tbl-header{
+    background-color:  #ff523b;
+   }
+  .tbl-content{
+    height:300px;
+    overflow-x:auto;
+    margin-top: 0px;
+    border: 0.5px solid #ff523b;
+  }
+  th{
+    padding: 20px 15px;
+    text-align: left;
+    font-weight: 500;
+    font-size: 12px;
+    color: #111;
+    text-transform: uppercase;
+  }
+  td{
+    padding: 15px;
+    text-align: left;
+    vertical-align:middle;
+    font-weight: 300;
+    font-size: 12px;
+    color: #111;
+    border-bottom: 0.5px solid #ff523b;
+  }
+  .ship-detail{
+     display: flex;
+     justify-content: space-between;
+     padding: 30px;
+ }
+ fo
+ label{
+     display: block;
+ }
+ input{
+     width:100%;
+     height: 30px;
+     border-radius: 10px;
+     border: 1px solid #ff523b;
+     padding-left: 10px;
+     margin-top: 5px;
+     outline: none;
+ }
+ .contain{
+     margin-top: 10px;
+ }
+ form{
+     width: 47%;
+ }
+ section{
+     width: 50%;
+ }
+ .submit{
+     padding: 10px;
+     border: 1px solid #ff523b;
+     margin: 10px 0 20 0;
+     color: #111;
+     background-color: #ff523b;
+     font-weight: 700;
+     border-radius: 10px;
+     cursor: pointer;
+ }
+ @media(max-width: 768px) {
+     .ship-detail{
+         display: block;
+     }
+     form{
+         width: 100%;
+         padding: 10px;
+     }
+     section{
+         width: 100%;
+     }
+ }
+  
+</style>
+
+
+
+{% include 'clients/navigation.html' %}
+
+
+<div class="ship-detail">
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="contain">
+            <label for="first-name">Shipping Address :  </label>
+            <input type="text" name="address" required>
+        </div>
+        <div class="contain">
+            <label for="contact">Calling Contact :  </label>
+            <input type="tel" name="contact" required>
+        </div>
+        
+        <button class="submit" type="submit">Proceed to payment</button>
+    
+    </form>
+
+ <section>
+    <div class="tbl-header">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Price</th>
+            <th>Quantity</th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+    <div class="tbl-content">
+      <table cellpadding="0" cellspacing="0" border="0">
+        <tbody>
+            
+            {% for item in items_in_cart %}
+            <tr>
+              <td><a href="{% url 'about-item' item.item.id%}">{{ item.item.name }} </a></td>
+              <td>${{ item.item.price }}</td>
+              <td>{{item.quantity}}</td>      
+            </tr>
+            {% endfor %}
+        
+          <tr>
+            <td><h2>TOTAL</h2></td>
+            <td><h2>${{ sum}}</h2></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+ </section>
+</div>
+
+<br><br>
+{% include 'clients/footer.html' %}

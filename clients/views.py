@@ -119,3 +119,17 @@ def search_item(request):
     your_cart = OrderItem.objects.filter(user_id=request.user, status='pending')
     total_cart_item = your_cart.aggregate(Sum('quantity'))['quantity__sum']
     return render(request, 'clients/search.html', {'results': result , 'your_cart': total_cart_item})
+
+def check_out(request):
+    if request.method == 'POST':
+        user_address = request.POST['address']
+        user_contact = request.POST['contact']
+        
+    items_in_cart = OrderItem.objects.filter(user_id=request.user, status="pending" )
+    your_cart = OrderItem.objects.filter(user_id=request.user, status='pending')
+    total_cart_item = your_cart.aggregate(Sum('quantity'))['quantity__sum']
+    sum = 0
+    for val in items_in_cart:
+        sum += val.get_total_item_price()
+    context = { 'items_in_cart' : items_in_cart , 'sum': sum , 'your_cart': total_cart_item}
+    return render(request, 'clients/check-out.html' , context)

@@ -7,23 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/cart-detail.css' %}">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
-    <title>Document</title>
+    <title>Cart details</title>
 </head>
 <body>
-    <div class="navbar">
-        <div class="logo">
-            <img src="file:///storage/emulated/0/Xender/image/profile (6).png" alt="olakay site logo" height=50 width=125px>
-        </div>
-        <nav>
-            <ul id="menuItems">
-                <li><a href="/">Home</a></li>
-                <li><a href="{% url 'products' %}">Product</a></li>
-                <li><a href="#">Login</a></li>
-                <li><a href="#">Logout</a></li>
-                <li><a href="#">Register</a></li>
-                <li><a href="#">Profile</a></li>
-            </ul>
-        </nav>
+        {% include 'clients/navigation.html' %}
         <div class="cart">
             <i class="fa-solid fa-cart-shopping"><a href="{% url 'cart-details' %}">Cart: {% if your_cart > 0 %} {{ your_cart}} {%else%} 0 {%endif%} </a></i>
         </div>
@@ -53,7 +40,7 @@
               <tr>
                 <td><a href="{% url 'about-item' item.item.id%}">{{ item.item.name }} </a></td>
                 <td>${{ item.item.price }}</td>
-                <td>{{item.quantity}}</td>
+                <td><h3><a href="">-</a></h3>{{item.quantity}} <h3><a href="">+</a></h3></td>
                 <td>{{ item.status }}</td>
                 <td>-0.36%</td>
                 
