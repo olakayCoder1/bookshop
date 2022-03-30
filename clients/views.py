@@ -1,10 +1,10 @@
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from .models import Items , OrderItem, Order
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
 from django.db.models import Sum
-from django.views.generic import DetailView
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -55,18 +55,16 @@ def add_to_cart(request, id):
         if order.item.filter(item__id=item.id).exists():
             order_item.quantity += 1
             order_item.save()
-            messages.info(request, "This item quantity was updated.")
-            return redirect("/")
+            return HttpResponseRedirect(request.META['HTTP_REFERER'])
         else:
             order.item.add(order_item)
-            messages.info(request, "This item was added to your cart.")
-            return redirect("/")
+            return HttpResponseRedirect(request.META['HTTP_REFERER'])
     else:
         order = Order.objects.create(
             user_id=request.user)
         order.item.add(order_item)
         messages.info(request, "This item was added to your cart.")
-        return redirect("/")
+        return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
 
 def remove_single_item_from_cart(request, id):
@@ -90,14 +88,13 @@ def remove_single_item_from_cart(request, id):
             else:
                 order.item.remove(order_item)
                 order_item.delete()
-            return redirect("/")
+            return HttpResponseRedirect(request.META['HTTP_REFERER'])
         else:
             messages.info(request, "This item was not in your cart")
-            return redirect("/about-item/"+str(id))
+            return HttpResponseRedirect(request.META['HTTP_REFERER'])
     else:
         messages.info(request, "You do not have an active order")
-        return redirect('/')
-
+        return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
 
 def cart_detail(request):
@@ -110,7 +107,6 @@ def cart_detail(request):
     total_cart_item = your_cart.aggregate(Sum('quantity'))['quantity__sum']
     context = { 'items_in_cart' : items_in_cart , 'sum': sum , 'your_cart': total_cart_item}
     return render(request, 'clients/cart-details.html', context)
-
 
 
 def search_item(request):

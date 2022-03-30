@@ -1,3 +1,4 @@
+from email.header import Header
 from django.db import models
 from django.contrib.auth.models import User
 # Create your models here.
@@ -34,12 +35,13 @@ class Items(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
 
+
     def get_url(self):
         return self.image.url
 
 
     def __str__(self):
-        return self.name
+        return f'{self.name}  ----> {self.id}'
 
 
 class OrderItem(models.Model):
@@ -54,7 +56,7 @@ class OrderItem(models.Model):
     status = models.CharField(choices=STATUS, default='pending', max_length=10)
 
     def __str__(self):
-        return f"{self.item} {self.quantity}"
+        return f"{self.item} {self.quantity}  ----> {self.id}"
 
     def get_total_item_price(self):
         quantity = self.quantity
@@ -79,5 +81,34 @@ class Order(models.Model):
 
 
 
+    def __str__(self):
+        return f" ----> {self.id}"
+
+
+class TransactionHeader(models.Model):
+    STATUS = (
+        ('pending', 'pending'),
+        ('delivered', 'delivered'),
+        ('cancel', 'cancel')
+    )
+    date_created = models.DateTimeField(auto_now_add=True)
+    user_id = models.ForeignKey(User , on_delete=models.CASCADE)
+    shipping_address = models.TextField()
+    shipping_contact = models.CharField(max_length=20)
+    status = models.CharField(max_length=10, choices=STATUS , default='pending')
+
     
 
+class Transaction(models.Model):
+    STATUS = (
+        ('pending', 'pending'),
+        ('delivered', 'delivered'),
+        ('cancel', 'cancel')
+    )
+    order = models.ManyToManyField(Order)
+    date_created = models.DateTimeField(auto_now_add=True)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    items_quantity = models.PositiveIntegerField()
+    total_price = models.DecimalField( max_digits=100, decimal_places=2)
+    header = models.OneToOneField(TransactionHeader, on_delete=models.CASCADE)
+    status = models.CharField(max_length=10, choices=STATUS , default='pending')

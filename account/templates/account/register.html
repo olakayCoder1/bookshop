@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static%}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    
+</head>
+            <h1>Bookshop</h1>
+        <div class="form-section">
+            <h3>Register</h3>
+            <form method="POST">
+                {% csrf_token %}
+                <form method="POST">
+                    {% csrf_token %}
+                    {% if messages%}
+                        {% for message in messages %}
+                        <div><p style="font-size: 12px;
+                            color: red;
+                            font-weight: bold;
+                            font-family: Arial, Helvetica, sans-serif; margin: 10px 0" >{{ message }}</p></div>
+                        {% endfor%}
+                    {% endif %}
+                   {{form.as_p}}
+                    <button class="register" type="submit">Register</button>
+                    <p style="font-size: 18px;
+                color: #111;
+                font-weight: 500;
+                font-family: Arial, Helvetica, sans-serif; margin: 10px 0">
+                    Already have an account? <a href="{% url 'login' %}">Login</a>
+                </p> 
+                   
+                </form>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

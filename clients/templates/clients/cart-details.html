@@ -11,12 +11,6 @@
 </head>
 <body>
         {% include 'clients/navigation.html' %}
-        <div class="cart">
-            <i class="fa-solid fa-cart-shopping"><a href="{% url 'cart-details' %}">Cart: {% if your_cart > 0 %} {{ your_cart}} {%else%} 0 {%endif%} </a></i>
-        </div>
-        <div class="togg">
-            <i onclick="menuToggle()" class="fa-solid fa-bars">toggle</i></div>
-    </div>
     <section>
         <h1>cart details</h1>
         <div class="tbl-header">
@@ -38,17 +32,17 @@
             <tbody>
                 {% for item in items_in_cart %}
               <tr>
-                <td><a href="{% url 'about-item' item.item.id%}">{{ item.item.name }} </a></td>
+                <td><a href="{% url 'about-item' item.item.id %}">{{ item.item.name }} </a></td>
                 <td>${{ item.item.price }}</td>
-                <td><h3><a href="">-</a></h3>{{item.quantity}} <h3><a href="">+</a></h3></td>
+                <td><a href="{% url 'delete-from-cart' item.item.id %}"><h3 style="display: inline; margin-left: 10px; font-weight: 20px;">-</h3></a><p style="display: inline; margin-left: 10px; font-weight: 20px;">{{item.quantity}} </p><a href="{% url 'add-to-cart' item.item.id %}"><h3 style="display: inline; margin-left: 10px; font-weight: 20px;">+</h3></a></td>
                 <td>{{ item.status }}</td>
                 <td>-0.36%</td>
                 
               </tr>
               {% endfor %}
               <tr>
-                <td><h2>TOTAL</h2></td>
-                <td><h2>{{ sum}}</h2></td>
+                <td><h3>TOTAL</h3></td>
+                <td><h3>${{ sum}}</h3></td>
                 <td></td>
                 <td></td>
                 <td></td>
